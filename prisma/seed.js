@@ -1,12 +1,11 @@
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
+import { hashPassword } from '../src/utils/password.js';
 
 const prisma = new PrismaClient();
 
 const SEAT_ROWS = ['A', 'B', 'C', 'D', 'E'];
 const SEATS_PER_ROW = 8;
 const VIP_ROWS = ['D', 'E'];
-const BCRYPT_ROUNDS = 10;
 const DAY_IN_MS = 24 * 60 * 60 * 1000;
 
 const cinemaSystems = [
@@ -72,7 +71,7 @@ function buildCluster({ tenCumRap, diaChi }) {
 }
 
 async function seedUsers() {
-  const matKhau = await bcrypt.hash(process.env.SEED_PASSWORD, BCRYPT_ROUNDS);
+  const matKhau = await hashPassword(process.env.SEED_PASSWORD);
 
   await prisma.nguoiDung.createMany({
     data: [

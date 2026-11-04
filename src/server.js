@@ -1,8 +1,6 @@
-import 'dotenv/config';
+import env from './config/env.js';
 import app from './app.js';
 
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server đang chạy tại http://localhost:${port}`);
+app.listen(env.port, () => {
+  console.log(`Server đang chạy tại http://localhost:${env.port}`);
 });
