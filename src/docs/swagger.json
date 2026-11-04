@@ -1,0 +1,1482 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CyberMovie API - Node.js Capstone",
+    "description": "Hệ thống API Đặt vé xem phim (QuanLyNguoiDung, QuanLyPhim, QuanLyRap, QuanLyDatVe) chuẩn Swagger Cybersoft.",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "Nhập JWT token theo cú pháp: Bearer <token>"
+    }
+  },
+  "paths": {
+    "/api/QuanLyDatVe/DatVe": {
+      "post": {
+        "tags": [
+          "QuanLyDatVe"
+        ],
+        "summary": "DatVe",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "DanhSachVe",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/DanhSachVeDat"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyDatVe/LayDanhSachPhongVe": {
+      "get": {
+        "tags": [
+          "QuanLyDatVe"
+        ],
+        "summary": "LayDanhSachPhongVe",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaLichChieu",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyDatVe/TaoLichChieu": {
+      "post": {
+        "tags": [
+          "QuanLyDatVe"
+        ],
+        "summary": "TaoLichChieu",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "lich",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/LichChieuInsert"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/LayDanhSachLoaiNguoiDung": {
+      "get": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "LayDanhSachLoaiNguoiDung",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyNguoiDung/DangNhap": {
+      "post": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "DangNhap",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ndDN",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ThongTinDangNhapVM"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyNguoiDung/DangKy": {
+      "post": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "DangKy",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nd",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NguoiDung_VM"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyNguoiDung/LayDanhSachNguoiDung": {
+      "get": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "LayDanhSachNguoiDung",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "tuKhoa",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/LayDanhSachNguoiDungPhanTrang": {
+      "get": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "LayDanhSachNguoiDungPhanTrang",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "tuKhoa",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "soTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "name": "soPhanTuTrenTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 20
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/TimKiemNguoiDung": {
+      "get": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "TimKiemNguoiDung",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "tuKhoa",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/TimKiemNguoiDungPhanTrang": {
+      "get": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "TimKiemNguoiDungPhanTrang",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "tuKhoa",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "soTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "name": "soPhanTuTrenTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/ThongTinTaiKhoan": {
+      "post": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "ThongTinTaiKhoan",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/LayThongTinNguoiDung": {
+      "post": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "LayThongTinNguoiDung",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "taiKhoan",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/ThemNguoiDung": {
+      "post": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "ThemNguoiDung",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nd",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NguoiDungVM"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung": {
+      "put": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "CapNhatThongTinNguoiDung",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nd",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NguoiDungVM"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "CapNhat",
+        "consumes": [
+          "application/json-patch+json",
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "nd",
+            "in": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/NguoiDungVM"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyNguoiDung/XoaNguoiDung": {
+      "delete": {
+        "tags": [
+          "QuanLyNguoiDung"
+        ],
+        "summary": "XoaNguoiDung",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "TaiKhoan",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyPhim/LayDanhSachBanner": {
+      "get": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "LayDanhSachBanner",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyPhim/LayDanhSachPhim": {
+      "get": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "LayDanhSachPhim",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "maNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "tenPhim",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyPhim/LayDanhSachPhimPhanTrang": {
+      "get": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "LayDanhSachPhimPhanTrang",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "maNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "tenPhim",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "soTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "name": "soPhanTuTrenTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyPhim/LayDanhSachPhimTheoNgay": {
+      "get": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "LayDanhSachPhimTheoNgay",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "maNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "tenPhim",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "soTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 1
+          },
+          {
+            "name": "soPhanTuTrenTrang",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 10
+          },
+          {
+            "name": "tuNgay",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "denNgay",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyPhim/ThemPhimUploadHinh": {
+      "post": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "ThemPhimUploadHinh",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tenPhim",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Tên phim"
+          },
+          {
+            "name": "trailer",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "Link trailer YouTube"
+          },
+          {
+            "name": "moTa",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "Mô tả nội dung phim"
+          },
+          {
+            "name": "ngayKhoiChieu",
+            "in": "formData",
+            "required": true,
+            "type": "string",
+            "description": "Ngày khởi chiếu (DD/MM/YYYY hoặc ISO)"
+          },
+          {
+            "name": "danhGia",
+            "in": "formData",
+            "required": false,
+            "type": "integer",
+            "default": 10,
+            "description": "Đánh giá từ 0 - 10"
+          },
+          {
+            "name": "hot",
+            "in": "formData",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "dangChieu",
+            "in": "formData",
+            "required": false,
+            "type": "boolean",
+            "default": true
+          },
+          {
+            "name": "sapChieu",
+            "in": "formData",
+            "required": false,
+            "type": "boolean",
+            "default": false
+          },
+          {
+            "name": "hinhAnh",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "File hình poster phim"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyPhim/CapNhatPhimUpload": {
+      "post": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "CapNhatPhimUpload",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "maPhim",
+            "in": "formData",
+            "required": true,
+            "type": "integer",
+            "description": "Mã phim cần cập nhật"
+          },
+          {
+            "name": "tenPhim",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "Tên phim"
+          },
+          {
+            "name": "trailer",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "Link trailer YouTube"
+          },
+          {
+            "name": "moTa",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "Mô tả nội dung phim"
+          },
+          {
+            "name": "ngayKhoiChieu",
+            "in": "formData",
+            "required": false,
+            "type": "string",
+            "description": "Ngày khởi chiếu"
+          },
+          {
+            "name": "danhGia",
+            "in": "formData",
+            "required": false,
+            "type": "integer",
+            "description": "Đánh giá từ 0 - 10"
+          },
+          {
+            "name": "hot",
+            "in": "formData",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "dangChieu",
+            "in": "formData",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "sapChieu",
+            "in": "formData",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "name": "hinhAnh",
+            "in": "formData",
+            "required": false,
+            "type": "file",
+            "description": "File hình poster phim mới (nếu có)"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyPhim": {
+      "post": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "UploadHinhAnh",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "tenPhim",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Tên phim cần cập nhật ảnh"
+          },
+          {
+            "name": "maNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "required": true,
+            "type": "file",
+            "description": "File hình ảnh"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyPhim/XP": {
+      "delete": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "XP",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaPhim",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyPhim/XoaPhim": {
+      "delete": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "XoaPhim",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaPhim",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          },
+          "401": {
+            "description": "Chưa đăng nhập / Token không hợp lệ"
+          },
+          "403": {
+            "description": "Không có quyền Quản trị (Admin)"
+          }
+        },
+        "security": [
+          {
+            "Bearer": []
+          }
+        ]
+      }
+    },
+    "/api/QuanLyPhim/LayThongTinPhim": {
+      "get": {
+        "tags": [
+          "QuanLyPhim"
+        ],
+        "summary": "LayThongTinPhim",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaPhim",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyRap/LayThongTinHeThongRap": {
+      "get": {
+        "tags": [
+          "QuanLyRap"
+        ],
+        "summary": "LayThongTinHeThongRap",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "maHeThongRap",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyRap/LayThongTinCumRapTheoHeThong": {
+      "get": {
+        "tags": [
+          "QuanLyRap"
+        ],
+        "summary": "LayThongTinCumRapTheoHeThong",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "maHeThongRap",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyRap/LayThongTinLichChieuHeThongRap": {
+      "get": {
+        "tags": [
+          "QuanLyRap"
+        ],
+        "summary": "LayThongTinLichChieuHeThongRap",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "maHeThongRap",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "maNhom",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "default": "GP01"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    },
+    "/api/QuanLyRap/LayThongTinLichChieuPhim": {
+      "get": {
+        "tags": [
+          "QuanLyRap"
+        ],
+        "summary": "LayThongTinLichChieuPhim",
+        "consumes": [],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "MaPhim",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int32",
+            "default": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Thành công"
+          },
+          "400": {
+            "description": "Dữ liệu không hợp lệ"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ThongTinDangNhapVM": {
+      "type": "object",
+      "required": [
+        "taiKhoan",
+        "matKhau"
+      ],
+      "properties": {
+        "taiKhoan": {
+          "type": "string",
+          "example": "admin"
+        },
+        "matKhau": {
+          "type": "string",
+          "example": "123456"
+        }
+      }
+    },
+    "NguoiDung_VM": {
+      "type": "object",
+      "required": [
+        "taiKhoan",
+        "matKhau",
+        "email",
+        "hoTen"
+      ],
+      "properties": {
+        "taiKhoan": {
+          "type": "string",
+          "example": "nguyenvana"
+        },
+        "matKhau": {
+          "type": "string",
+          "example": "123456"
+        },
+        "email": {
+          "type": "string",
+          "example": "vana@gmail.com"
+        },
+        "soDt": {
+          "type": "string",
+          "example": "0901234567"
+        },
+        "hoTen": {
+          "type": "string",
+          "example": "Nguyễn Văn A"
+        }
+      }
+    },
+    "NguoiDungVM": {
+      "type": "object",
+      "required": [
+        "taiKhoan"
+      ],
+      "properties": {
+        "taiKhoan": {
+          "type": "string",
+          "example": "nguyenvana"
+        },
+        "matKhau": {
+          "type": "string",
+          "example": "123456"
+        },
+        "email": {
+          "type": "string",
+          "example": "vana@gmail.com"
+        },
+        "soDt": {
+          "type": "string",
+          "example": "0901234567"
+        },
+        "maLoaiNguoiDung": {
+          "type": "string",
+          "enum": [
+            "KhachHang",
+            "QuanTri"
+          ],
+          "example": "KhachHang"
+        },
+        "hoTen": {
+          "type": "string",
+          "example": "Nguyễn Văn A"
+        }
+      }
+    },
+    "LichChieuInsert": {
+      "type": "object",
+      "required": [
+        "maPhim",
+        "maRap",
+        "ngayChieuGioChieu",
+        "giaVe"
+      ],
+      "properties": {
+        "maPhim": {
+          "type": "integer",
+          "example": 1
+        },
+        "maRap": {
+          "type": "integer",
+          "example": 1
+        },
+        "ngayChieuGioChieu": {
+          "type": "string",
+          "example": "20/12/2026 19:30:00",
+          "description": "DD/MM/YYYY HH:mm:ss hoặc định dạng ISO"
+        },
+        "giaVe": {
+          "type": "number",
+          "example": 90000
+        }
+      }
+    },
+    "DanhSachVeDat": {
+      "type": "object",
+      "required": [
+        "maLichChieu",
+        "danhSachVe"
+      ],
+      "properties": {
+        "maLichChieu": {
+          "type": "integer",
+          "example": 1
+        },
+        "danhSachVe": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/VeVM"
+          }
+        }
+      }
+    },
+    "VeVM": {
+      "type": "object",
+      "required": [
+        "maGhe"
+      ],
+      "properties": {
+        "maGhe": {
+          "type": "integer",
+          "example": 1
+        }
+      }
+    }
+  }
+}
