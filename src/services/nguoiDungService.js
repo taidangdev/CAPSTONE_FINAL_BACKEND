@@ -2,7 +2,7 @@ import { LoaiNguoiDung } from '@prisma/client';
 import prisma from '../config/prisma.js';
 import AppError from '../utils/AppError.js';
 import { assertSelfOrAdmin, isAdmin } from '../utils/authorization.js';
-import { buildPageContent, getPaginationArgs } from '../utils/pagination.js';
+import { paginate } from '../utils/pagination.js';
 import { hashPassword, verifyPassword } from '../utils/password.js';
 import { signAccessToken } from '../utils/token.js';
 
@@ -138,17 +138,12 @@ export async function getUsers({ tuKhoa }) {
 }
 
 export async function getUserPage({ tuKhoa, ...pagination }) {
-  const where = buildUserFilter(tuKhoa);
-  const [users, totalCount] = await prisma.$transaction([
-    prisma.nguoiDung.findMany({
-      where,
-      select: USER_SELECT,
-      orderBy: { taiKhoan: 'asc' },
-      ...getPaginationArgs(pagination),
-    }),
-    prisma.nguoiDung.count({ where }),
-  ]);
-  return buildPageContent(users.map(toUserResponse), totalCount, pagination);
+  const page = await paginate(
+    prisma.nguoiDung,
+    { where: buildUserFilter(tuKhoa), select: USER_SELECT, orderBy: { taiKhoan: 'asc' } },
+    pagination,
+  );
+  return { ...page, items: page.items.map(toUserResponse) };
 }
 
 export async function getUserDetail(taiKhoan, requester) {

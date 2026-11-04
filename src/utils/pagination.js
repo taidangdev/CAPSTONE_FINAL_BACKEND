@@ -1,8 +1,15 @@
-export function getPaginationArgs({ soTrang, soPhanTuTrenTrang }) {
-  return { skip: (soTrang - 1) * soPhanTuTrenTrang, take: soPhanTuTrenTrang };
-}
+import prisma from '../config/prisma.js';
 
-export function buildPageContent(items, totalCount, { soTrang, soPhanTuTrenTrang }) {
+export async function paginate(model, queryArgs, { soTrang, soPhanTuTrenTrang }) {
+  const [items, totalCount] = await prisma.$transaction([
+    model.findMany({
+      ...queryArgs,
+      skip: (soTrang - 1) * soPhanTuTrenTrang,
+      take: soPhanTuTrenTrang,
+    }),
+    model.count({ where: queryArgs.where }),
+  ]);
+
   return {
     currentPage: soTrang,
     count: items.length,
