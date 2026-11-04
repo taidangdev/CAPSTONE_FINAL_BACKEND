@@ -47,9 +47,10 @@ function toUserResponse({ loaiNguoiDung, ...user }) {
   return { ...user, maLoaiNguoiDung: loaiNguoiDung };
 }
 
-function toBookingHistoryItem({ phim, rapPhim, datVe, ...showtime }) {
+function toBookingHistoryItem({ phim, rapPhim, datVe, ngayGioChieu, ...showtime }) {
   return {
     ...showtime,
+    ngayChieuGioChieu: ngayGioChieu,
     tenPhim: phim.tenPhim,
     hinhAnh: phim.hinhAnh,
     tenRap: rapPhim.tenRap,
