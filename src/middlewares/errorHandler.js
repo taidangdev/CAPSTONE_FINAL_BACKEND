@@ -2,6 +2,7 @@ import AppError from '../utils/AppError.js';
 import { buildResponseBody } from '../utils/response.js';
 
 const KNOWN_ERRORS_BY_CODE = {
+  P2000: { statusCode: 400, message: 'Dữ liệu vượt quá độ dài cho phép' },
   P2002: { statusCode: 409, message: 'Dữ liệu đã tồn tại' },
   P2003: { statusCode: 409, message: 'Không thể thực hiện vì còn dữ liệu liên quan' },
   P2025: { statusCode: 404, message: 'Không tìm thấy dữ liệu' },
@@ -13,6 +14,9 @@ function resolveKnownError(error) {
   }
   if (error.type === 'entity.parse.failed') {
     return { statusCode: 400, message: 'Body không phải JSON hợp lệ' };
+  }
+  if (error.name === 'MulterError') {
+    return { statusCode: 400, message: `Lỗi upload file: ${error.message}` };
   }
   return KNOWN_ERRORS_BY_CODE[error.code];
 }
