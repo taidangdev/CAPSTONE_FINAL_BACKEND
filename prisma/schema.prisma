@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum LoaiNguoiDung {
+  KhachHang
+  QuanTri
+}
+
+enum LoaiGhe {
+  Thuong
+  Vip
+}
+
+model NguoiDung {
+  taiKhoan      String        @id @map("tai_khoan") @db.VarChar(50)
+  hoTen         String        @map("ho_ten") @db.VarChar(100)
+  email         String        @unique @db.VarChar(100)
+  soDt          String?       @map("so_dt") @db.VarChar(20)
+  matKhau       String        @map("mat_khau") @db.VarChar(255)
+  loaiNguoiDung LoaiNguoiDung @default(KhachHang) @map("loai_nguoi_dung")
+
+  datVe DatVe[]
+}
+
+model Phim {
+  maPhim        Int      @id @default(autoincrement()) @map("ma_phim")
+  tenPhim       String   @map("ten_phim") @db.VarChar(255)
+  trailer       String?  @db.VarChar(255)
+  hinhAnh       String?  @map("hinh_anh") @db.VarChar(255)
+  moTa          String?  @map("mo_ta") @db.Text
+  ngayKhoiChieu DateTime @map("ngay_khoi_chieu") @db.Date
+  danhGia       Int      @default(0) @map("danh_gia")
+  hot           Boolean  @default(false)
+  dangChieu     Boolean  @default(false) @map("dang_chieu")
+  sapChieu      Boolean  @default(false) @map("sap_chieu")
+
+  banner    Banner[]
+  lichChieu LichChieu[]
+}
+
+model Banner {
+  maBanner Int    @id @default(autoincrement()) @map("ma_banner")
+  maPhim   Int    @map("ma_phim")
+  hinhAnh  String @map("hinh_anh") @db.VarChar(255)
+
+  phim Phim @relation(fields: [maPhim], references: [maPhim], onDelete: Cascade)
+}
+
+model HeThongRap {
+  maHeThongRap  String  @id @map("ma_he_thong_rap") @db.VarChar(50)
+  tenHeThongRap String  @map("ten_he_thong_rap") @db.VarChar(100)
+  logo          String? @db.VarChar(255)
+
+  cumRap CumRap[]
+}
+
+model CumRap {
+  maCumRap     Int    @id @default(autoincrement()) @map("ma_cum_rap")
+  tenCumRap    String @map("ten_cum_rap") @db.VarChar(100)
+  diaChi       String @map("dia_chi") @db.VarChar(255)
+  maHeThongRap String @map("ma_he_thong_rap") @db.VarChar(50)
+
+  heThongRap HeThongRap @relation(fields: [maHeThongRap], references: [maHeThongRap])
+  rapPhim    RapPhim[]
+}
+
+model RapPhim {
+  maRap    Int    @id @default(autoincrement()) @map("ma_rap")
+  tenRap   String @map("ten_rap") @db.VarChar(100)
+  maCumRap Int    @map("ma_cum_rap")
+
+  cumRap    CumRap      @relation(fields: [maCumRap], references: [maCumRap])
+  ghe       Ghe[]
+  lichChieu LichChieu[]
+}
+
+model Ghe {
+  maGhe   Int     @id @default(autoincrement()) @map("ma_ghe")
+  tenGhe  String  @map("ten_ghe") @db.VarChar(10)
+  loaiGhe LoaiGhe @default(Thuong) @map("loai_ghe")
+  maRap   Int     @map("ma_rap")
+
+  rapPhim RapPhim @relation(fields: [maRap], references: [maRap])
+  datVe   DatVe[]
+
+  @@unique([maRap, tenGhe])
+}
+
+model LichChieu {
+  maLichChieu  Int      @id @default(autoincrement()) @map("ma_lich_chieu")
+  maRap        Int      @map("ma_rap")
+  maPhim       Int      @map("ma_phim")
+  ngayGioChieu DateTime @map("ngay_gio_chieu")
+  giaVe        Int      @map("gia_ve")
+
+  rapPhim RapPhim @relation(fields: [maRap], references: [maRap])
+  phim    Phim    @relation(fields: [maPhim], references: [maPhim])
+  datVe   DatVe[]
+
+  @@unique([maRap, ngayGioChieu])
+  @@index([maPhim])
+}
+
+model DatVe {
+  taiKhoan    String @map("tai_khoan") @db.VarChar(50)
+  maLichChieu Int    @map("ma_lich_chieu")
+  maGhe       Int    @map("ma_ghe")
+
+  nguoiDung NguoiDung @relation(fields: [taiKhoan], references: [taiKhoan])
+  lichChieu LichChieu @relation(fields: [maLichChieu], references: [maLichChieu])
+  ghe       Ghe       @relation(fields: [maGhe], references: [maGhe])
+
+  // Mỗi ghế chỉ được đặt một lần trong một lịch chiếu
+  @@id([maLichChieu, maGhe])
+  @@index([taiKhoan])
+  @@index([maGhe])
+}
