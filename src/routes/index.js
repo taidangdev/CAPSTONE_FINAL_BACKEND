@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import prisma from '../config/prisma.js';
+import quanLyDatVeRoute from './quanLyDatVeRoute.js';
 import quanLyNguoiDungRoute from './quanLyNguoiDungRoute.js';
 import quanLyPhimRoute from './quanLyPhimRoute.js';
 import quanLyRapRoute from './quanLyRapRoute.js';
@@ -14,5 +15,6 @@ router.get('/health', async (req, res) => {
 router.use('/QuanLyNguoiDung', quanLyNguoiDungRoute);
 router.use('/QuanLyPhim', quanLyPhimRoute);
 router.use('/QuanLyRap', quanLyRapRoute);
+router.use('/QuanLyDatVe', quanLyDatVeRoute);
 
 export default router;
