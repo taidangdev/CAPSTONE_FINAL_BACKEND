@@ -4,6 +4,15 @@ Hệ thống Backend RESTful API Quản lý Phim, Cụm Rạp và Đặt vé xem
 
 ---
 
+## 🌐 Live Demo & Swagger UI Trực Tuyến
+
+- **URL chính thức:** [https://capstone-final-backend-kvoe.onrender.com](https://capstone-final-backend-kvoe.onrender.com)
+- **Tài liệu API (Swagger UI):** [https://capstone-final-backend-kvoe.onrender.com/api-docs](https://capstone-final-backend-kvoe.onrender.com/api-docs)
+
+*(Mở liên kết trên để trải nghiệm và kiểm thử trực tiếp toàn bộ 30 API ngay trên trình duyệt mà không cần cài đặt).*
+
+---
+
 ## 📌 Tổng quan dự án
 
 Dự án được xây dựng theo kiến trúc nhiều tầng (Layered Architecture) chuẩn Clean Code:
@@ -184,3 +193,4 @@ Dự án cung cấp sẵn file Postman Collection chuẩn:
 1. **Chống đặt trùng ghế (Race Condition):** Cơ chế khoá ở tầng Database bằng ràng buộc duy nhất `UNIQUE (ma_lich_chieu, ma_ghe)` kết hợp thao tác `INSERT` nguyên tử đảm bảo khi hàng chục người cùng ấn đặt một ghế cùng 1 tích tắc, chỉ duy nhất 1 người thành công, các request còn lại nhận mã `409 Conflict`.
 2. **Loại bỏ TokenCybersoft:** Tuân thủ yêu cầu của đề tài: Không yêu cầu header `TokenCybersoft`, toàn bộ hệ thống sử dụng tiêu chuẩn chuẩn ngành `Authorization: Bearer <JWT>`.
 3. **Clean Code & Validation:** Toàn bộ tham số đầu vào được validate chặt chẽ qua schema Zod; mật khẩu mã hóa một chiều an toàn bằng `bcryptjs`.
+
