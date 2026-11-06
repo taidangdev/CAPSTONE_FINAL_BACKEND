@@ -17,7 +17,7 @@ const swaggerDocument = JSON.parse(
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ type: ['application/json', 'application/*+json'] }));
 app.use('/uploads', express.static(UPLOAD_DIRECTORY));
 
 // Swagger UI

@@ -32,10 +32,11 @@ for (const [p, methods] of Object.entries(raw.paths)) {
     const key = m.toUpperCase() + ' ' + p;
     const isAuth = authEndpoints.has(key);
 
+    const isMultipart = (op.consumes || []).includes('multipart/form-data');
     const newOp = {
       tags: op.tags,
       summary: op.operationId,
-      consumes: op.consumes || ['application/json'],
+      consumes: isMultipart ? ['multipart/form-data'] : ['application/json'],
       produces: ['application/json'],
       parameters: (op.parameters || []).filter((param) => {
         return param.name !== 'TokenCybersoft' && param.name !== 'Authorization';

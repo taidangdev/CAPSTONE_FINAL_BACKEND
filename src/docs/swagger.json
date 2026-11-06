@@ -22,10 +22,7 @@
         ],
         "summary": "DatVe",
         "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
+          "application/json"
         ],
         "produces": [
           "application/json"
@@ -64,7 +61,9 @@
           "QuanLyDatVe"
         ],
         "summary": "LayDanhSachPhongVe",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -95,10 +94,7 @@
         ],
         "summary": "TaoLichChieu",
         "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
+          "application/json"
         ],
         "produces": [
           "application/json"
@@ -140,7 +136,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "LayDanhSachLoaiNguoiDung",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -162,10 +160,7 @@
         ],
         "summary": "DangNhap",
         "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
+          "application/json"
         ],
         "produces": [
           "application/json"
@@ -197,10 +192,7 @@
         ],
         "summary": "DangKy",
         "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
+          "application/json"
         ],
         "produces": [
           "application/json"
@@ -231,7 +223,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "LayDanhSachNguoiDung",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -275,7 +269,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "LayDanhSachNguoiDungPhanTrang",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -335,7 +331,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "TimKiemNguoiDung",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -379,7 +377,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "TimKiemNguoiDungPhanTrang",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -439,7 +439,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "ThongTinTaiKhoan",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -468,7 +470,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "LayThongTinNguoiDung",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -505,10 +509,7 @@
         ],
         "summary": "ThemNguoiDung",
         "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
+          "application/json"
         ],
         "produces": [
           "application/json"
@@ -551,10 +552,7 @@
         ],
         "summary": "CapNhatThongTinNguoiDung",
         "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
+          "application/json"
         ],
         "produces": [
           "application/json"
@@ -592,10 +590,7 @@
         ],
         "summary": "CapNhat",
         "consumes": [
-          "application/json-patch+json",
-          "application/json",
-          "text/json",
-          "application/*+json"
+          "application/json"
         ],
         "produces": [
           "application/json"
@@ -634,7 +629,9 @@
           "QuanLyNguoiDung"
         ],
         "summary": "XoaNguoiDung",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -673,7 +670,9 @@
           "QuanLyPhim"
         ],
         "summary": "LayDanhSachBanner",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -694,7 +693,9 @@
           "QuanLyPhim"
         ],
         "summary": "LayDanhSachPhim",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -730,7 +731,9 @@
           "QuanLyPhim"
         ],
         "summary": "LayDanhSachPhimPhanTrang",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -782,7 +785,9 @@
           "QuanLyPhim"
         ],
         "summary": "LayDanhSachPhimTheoNgay",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -1105,7 +1110,9 @@
           "QuanLyPhim"
         ],
         "summary": "XP",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -1145,7 +1152,9 @@
           "QuanLyPhim"
         ],
         "summary": "XoaPhim",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -1185,7 +1194,9 @@
           "QuanLyPhim"
         ],
         "summary": "LayThongTinPhim",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -1215,7 +1226,9 @@
           "QuanLyRap"
         ],
         "summary": "LayThongTinHeThongRap",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -1244,7 +1257,9 @@
           "QuanLyRap"
         ],
         "summary": "LayThongTinCumRapTheoHeThong",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -1273,7 +1288,9 @@
           "QuanLyRap"
         ],
         "summary": "LayThongTinLichChieuHeThongRap",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
@@ -1309,7 +1326,9 @@
           "QuanLyRap"
         ],
         "summary": "LayThongTinLichChieuPhim",
-        "consumes": [],
+        "consumes": [
+          "application/json"
+        ],
         "produces": [
           "application/json"
         ],
